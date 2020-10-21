@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    <title>基于Sonar的iOS代码质量检测系统 | WillkYang</title>
+    <meta name="renderer" content="webkit">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta name="description" content="粤ICP备20071436号-1">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="基于Sonar的iOS代码质量检测系统 | WillkYang">
+    <meta name="twitter:description" content="粤ICP备20071436号-1">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="基于Sonar的iOS代码质量检测系统 | WillkYang">
+    <meta property="og:description" content="粤ICP备20071436号-1">
+
+    
+    <meta name="author" content="WillkYang">
+    
+    <link rel="stylesheet" href="/css/vno.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    
+    <link rel="icon" href="/images/usericon.png">
+    
+
+    <meta name="generator" content="hexo"/>
+    
+    <link rel="alternate" type="application/rss+xml" title="WillkYang" href="/atom.xml">
+    
+
+    <link rel="canonical" href="http://yoursite.com/posts/基于Sonar的iOS代码质量检测系统.html"/>
+
+                 
+</head>
+
+<body class="home-template no-js">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <span class="mobile btn-mobile-menu">
+        <i class="fa fa-list btn-mobile-menu__icon"></i>
+        <i class="fa fa-angle-up btn-mobile-close__icon hidden"></i>
+    </span>
+
+    
+<header class="panel-cover panel-cover--collapsed" style="background-image: url(/images/cover.webp)">
+  <div class="panel-main">
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        <a href="/" title="前往 WillkYang 的主页"><img src="/images/usericon.png" width="80" alt="WillkYang logo" class="panel-cover__logo logo"></a>
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage for WillkYang">WillkYang</a></h1>
+        
+        <span class="panel-cover__subtitle panel-subtitle">Hi there, I am a developer 👋</span>
+        
+        <hr class="panel-cover__divider">
+        <p class="panel-cover__description">粤ICP备20071436号-1</p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary">
+
+        <div class="navigation-wrapper">
+          <div>
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+              <li class="navigation__item"><a href="/#blog" title="访问博客" class="blog-button">博客</a></li>
+            
+            </ul>
+          </nav>
+          </div>
+          <div>
+          <nav class="cover-navigation navigation--social">
+  <ul class="navigation">
+
+  <!-- Weibo-->
+  
+
+  <!-- Github -->
+  
+  <li class="navigation__item">
+    <a href="https://github.com/willkyang" title="查看我的GitHub主页" target="_blank">
+      <i class="social fa fa-github"></i>
+      <span class="label">Github</span>
+    </a>
+  </li>
+
+
+<!-- Stack Overflow -->
+        
+
+  <!-- Google Plus -->
+  
+
+<!-- Facebook -->
+
+  
+<!-- Twitter -->
+
+  
+
+  <li class="navigation__item">
+    <a href="/atom.xml" title="RSS" target="_blank">
+      <i class="social fa fa-rss"></i>
+      <span class="label">RSS</span>
+    </a>
+  </li>
+
+
+
+  </ul>
+</nav>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="panel-cover--overlay cover-slate"></div>
+  </div> 
+</header>
+
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner">
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2017-01-14T16:00:00.000Z" class="post-list__meta--date date">2017-01-15</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/all-tags/iOS/">iOS</a>
+ </span>
+      <span class="page-pv">
+      &nbsp;阅读&nbsp;<span id="busuanzi_value_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
+      </span> 
+   
+    </div>
+    <h1 class="post-title">基于Sonar的iOS代码质量检测系统</h1>
+  </header>
+
+  <section class="post">
+    <p>本文记录了利用Sonar工具，搭建一个实现对iOS项目进行代码质量检测的系统。</p>
+<!-- excerpt -->
+<p>先瞄一眼成果～</p>
+<p><img src="../assets/基于Sonar的iOS代码质量检测系统/1240-20201011152115962.png" alt=""></p>
+<p><img src="../assets/基于Sonar的iOS代码质量检测系统/1240-20201011152121150.png" alt=""></p>
+<h6 id="1-JDK，DBMS（演示环境使用Mysql）"><a href="#1-JDK，DBMS（演示环境使用Mysql）" class="headerlink" title="1.JDK，DBMS（演示环境使用Mysql）"></a>1.JDK，DBMS（演示环境使用Mysql）</h6><h6 id="2-创建sonar数据库和用户"><a href="#2-创建sonar数据库和用户" class="headerlink" title="2.创建sonar数据库和用户"></a>2.创建sonar数据库和用户</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -pCREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;</span><br><span class="line">CREATE USER &apos;sonar&apos; IDENTIFIED BY &apos;sonar&apos;;</span><br><span class="line">GRANT ALL ON sonar.* TO &apos;sonar&apos;@&apos;%&apos; IDENTIFIED BY &apos;sonar&apos;;</span><br><span class="line">GRANT ALL ON sonar.* TO &apos;sonar&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;sonar&apos;;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<h6 id="3-下载sonar-演示环境使用v6-1，下载后解压到"><a href="#3-下载sonar-演示环境使用v6-1，下载后解压到" class="headerlink" title="3.下载sonar 演示环境使用v6.1，下载后解压到"></a>3.<a href="https://www.sonarqube.org/downloads/" target="_blank" rel="noopener">下载sonar</a> 演示环境使用v6.1，下载后解压到</h6><pre><code>/usr/local/sonar/
+</code></pre><h6 id="4-安装sonar-runner"><a href="#4-安装sonar-runner" class="headerlink" title="4.安装sonar-runner"></a>4.安装sonar-runner</h6><p><a href="http://repo1.maven.org/maven2/org/codehaus/sonar/runner/sonar-runner-dist/2.4/sonar-runner-dist-2.4.zip" target="_blank" rel="noopener">下载sonar-runner</a>：演示环境使用v2.4，下载后解压到</p>
+<pre><code>/usr/local/sonar-runner/
+</code></pre><p>完成后配置bin环境变量PATH～</p>
+<h6 id="5-安装完成sonar、sonar-runner后进行数据配置"><a href="#5-安装完成sonar、sonar-runner后进行数据配置" class="headerlink" title="5.安装完成sonar、sonar-runner后进行数据配置"></a>5.安装完成sonar、sonar-runner后进行数据配置</h6><p>sonar配置：sonar.properties配置文件/usr/local/sonar/conf/sonar.properties<br>配置数据库登陆账号密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sonar.jdbc.username=sonar</span><br><span class="line">sonar.jdbc.password=sonar</span><br><span class="line">sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance</span><br></pre></td></tr></table></figure>
+<p>sonar-runner配置：sonar-runner.properties配置文件/usr/local/sonar-runner/conf/sonar-runner.properties。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">sonar.host.url=http://localhost:9000</span><br><span class="line">#----- MySQL</span><br><span class="line">sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8</span><br><span class="line">#----- Global database settings</span><br><span class="line">sonar.jdbc.username=sonar</span><br><span class="line">sonar.jdbc.password=sonar</span><br><span class="line">#----- Default source code encoding</span><br><span class="line">sonar.sourceEncoding=UTF-8</span><br><span class="line">#----- Security (when &apos;sonar.forceAuthentication&apos; is set to &apos;true&apos;)</span><br><span class="line">sonar.login=admin</span><br><span class="line">sonar.password=admin</span><br></pre></td></tr></table></figure>
+<h6 id="5-1在-usr-local-sonar-bin-macosx-universal-64-下执行："><a href="#5-1在-usr-local-sonar-bin-macosx-universal-64-下执行：" class="headerlink" title="5.1在/usr/local/sonar/bin/macosx-universal-64/下执行："></a>5.1在/usr/local/sonar/bin/macosx-universal-64/下执行：</h6><pre><code>sudo ./sonar.sh start  启动sonar。在浏览器打开localhost:9000查看是否启动
+</code></pre><h6 id="6-sonar默认没有安装oc的插件，需要手动下载-sonar-objective-c-plugin-0-5-0-SNAPSHOT-jar-引用下载地址"><a href="#6-sonar默认没有安装oc的插件，需要手动下载-sonar-objective-c-plugin-0-5-0-SNAPSHOT-jar-引用下载地址" class="headerlink" title="6.sonar默认没有安装oc的插件，需要手动下载:sonar-objective-c-plugin-0.5.0-SNAPSHOT.jar 引用下载地址"></a>6.sonar默认没有安装oc的插件，需要手动下载:sonar-objective-c-plugin-0.5.0-SNAPSHOT.jar <a href="https://github.com/ChenTF/iOS-sonarShell/blob/master/sonar-objective-c-plugin-0.5.0-SNAPSHOT.jar" target="_blank" rel="noopener">引用下载地址</a></h6><p>放置在/usr/local/sonar/extensions/plugins/目录下。重启sonar会自动加载。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo ./sonar.sh stop</span><br><span class="line">sudo ./sonar.sh start</span><br></pre></td></tr></table></figure></p>
+<h6 id="7-使用Homebrew来安装xctool、oclint、gcovr。"><a href="#7-使用Homebrew来安装xctool、oclint、gcovr。" class="headerlink" title="7.使用Homebrew来安装xctool、oclint、gcovr。"></a>7.使用Homebrew来安装xctool、oclint、gcovr。</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">brew install xctool</span><br><span class="line">brew tap oclint/formulae</span><br><span class="line">brew install oclint</span><br><span class="line">brew install gcovr</span><br></pre></td></tr></table></figure>
+<h6 id="8-在待测试项目与-xocdeproj同级目录下新建文本sonar-project-properties配置待测试项目信息。引用下载地址"><a href="#8-在待测试项目与-xocdeproj同级目录下新建文本sonar-project-properties配置待测试项目信息。引用下载地址" class="headerlink" title="8.在待测试项目与*.xocdeproj同级目录下新建文本sonar-project.properties配置待测试项目信息。引用下载地址"></a>8.在待测试项目与*.xocdeproj同级目录下新建文本sonar-project.properties配置待测试项目信息。<a href="https://github.com/ChenTF/iOS-sonarShell/blob/master/sonar-project.properties" target="_blank" rel="noopener">引用下载地址</a></h6><p>配置结构如下：<br><img src="../assets/基于Sonar的iOS代码质量检测系统/1240-20201011152127002.png"></p>
+<h6 id="9-在此工作目录下运行隔壁老王写的兼容xcode8的脚本：https-github-com-ChenTF-iOS-sonarShell-blob-master-run-sonar-V2-sh"><a href="#9-在此工作目录下运行隔壁老王写的兼容xcode8的脚本：https-github-com-ChenTF-iOS-sonarShell-blob-master-run-sonar-V2-sh" class="headerlink" title="9.在此工作目录下运行隔壁老王写的兼容xcode8的脚本：https://github.com/ChenTF/iOS-sonarShell/blob/master/run-sonar_V2.sh"></a>9.在此工作目录下运行隔壁老王写的兼容xcode8的脚本：<a href="https://github.com/ChenTF/iOS-sonarShell/blob/master/run-sonar_V2.sh" target="_blank" rel="noopener">https://github.com/ChenTF/iOS-sonarShell/blob/master/run-sonar_V2.sh</a></h6><p>PS：运行该脚本无效的可尝试参考11的思路手动运行</p>
+<h6 id="10-完成。打开localhost-9000查看结果，然后开始修bug吧～～附图："><a href="#10-完成。打开localhost-9000查看结果，然后开始修bug吧～～附图：" class="headerlink" title="10.完成。打开localhost:9000查看结果，然后开始修bug吧～～附图："></a>10.完成。打开localhost:9000查看结果，然后开始修bug吧～～附图：</h6><p><img src="../assets/基于Sonar的iOS代码质量检测系统/1240-20201011152129070.png" alt=""></p>
+<h6 id="11-补充：手动执行代码质量检测过程"><a href="#11-补充：手动执行代码质量检测过程" class="headerlink" title="11.补充：手动执行代码质量检测过程"></a>11.补充：手动执行代码质量检测过程</h6><h6 id="11-1-生成compile-commands-json文件。命令："><a href="#11-1-生成compile-commands-json文件。命令：" class="headerlink" title="11.1.生成compile_commands.json文件。命令："></a>11.1.生成compile_commands.json文件。命令：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcodebuild -workspace TRB.xcworkspace -scheme TRB -sdk iphonesimulator  build | tee xcodebuild.log | xcpretty -r json-compilation-database --output compile_commands.json</span><br></pre></td></tr></table></figure>
+<p><img src="../assets/基于Sonar的iOS代码质量检测系统/1240-20201011152142061.png" alt=""></p>
+<p><img src="../assets/基于Sonar的iOS代码质量检测系统/1240-20201011152144319.png" alt=""></p>
+<h6 id="11-2生成oclint-xml。命令："><a href="#11-2生成oclint-xml。命令：" class="headerlink" title="11.2生成oclint.xml。命令："></a>11.2生成oclint.xml。命令：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oclint-json-compilation-database -- -max-priority-1 10000 -max-priority-2 10000 -max-priority-3 10000 -rc LONG_LINE=150 -report-type pmd -o oclint.xml</span><br></pre></td></tr></table></figure>
+<p><img src="../assets/基于Sonar的iOS代码质量检测系统/1240-20201011152147472.png" alt=""></p>
+<h6 id="11-3执行sonar-runner。"><a href="#11-3执行sonar-runner。" class="headerlink" title="11.3执行sonar-runner。"></a>11.3执行sonar-runner。</h6><p>注意在sonar-project.properties配置文件中，需要配置oclint.xml文件路径。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sonar.objectivec.oclint.reportPath=oclint.xml</span><br></pre></td></tr></table></figure></p>
+<p><img src="../assets/基于Sonar的iOS代码质量检测系统/1240-20201011152152042.png" alt=""></p>
+<p> 执行命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sonar-runner //若提示没找到命令的检查PATH的设置</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/459563-ee46c79fc784d4d5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="../assets/基于Sonar的iOS代码质量检测系统/1240-20201011152154613.png" alt=""></p>
+<h6 id="11-4完成。打开localhost-9000查看结果。～～"><a href="#11-4完成。打开localhost-9000查看结果。～～" class="headerlink" title="11.4完成。打开localhost:9000查看结果。～～"></a>11.4完成。打开localhost:9000查看结果。～～</h6><p><img src="../assets/基于Sonar的iOS代码质量检测系统/1240-20201011152156878.png" alt=""></p>
+<blockquote>
+<p>补充：<br>如果需要，可下载sonar中文插件，放到/usr/local/sonar/extensions/plugins/下，重启sonar即可。<br>注意下载的语言包需要和sonar版本号对应，例如演示环境sonar为v6.1，故下载v1.13语言包。<br><a href="https://github.com/SonarQubeCommunity/sonar-l10n-zh" target="_blank" rel="noopener">对应关系请参照下载地址</a></p>
+</blockquote>
+<p>参考链接：<br><a href="https://my.oschina.net/ChenTF/blog/806565" target="_blank" rel="noopener">Sonar XCode8兼容</a></p>
+<p>欢迎加群讨论其它～：578874451</p>
+
+  </section>
+
+</article>
+
+<section class="read-more">
+           
+    
+               
+            <div class="read-more-item">
+                <span class="read-more-item-dim">最近的文章</span>
+                <h2 class="post-list__post-title post-title"><a href="/posts/基于Xcode8插件开发～一键检测处理头文件引用.html" title="基于Xcode8插件开发～一键检测处理头文件引用">基于Xcode8插件开发～一键检测处理头文件引用</a></h2>
+                <p class="excerpt">
+                
+                本文基于Xcode8开放的Xcode Source Editor Extension，实现了一个自动删除源码中重复头文件的小插件。
+
+
+Xcode8开放了新的一个Extension：Xcode Source Editor Extension，目的是让开发者可以正规的自主为IDE编写插件，虽然说系统现
+                &hellip;
+                </p>
+                <div class="post-list__meta"><time datetime="2017-01-16T16:00:00.000Z" class="post-list__meta--date date">2017-01-17</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
+  <a class="tag-link" href="/all-tags/iOS/">iOS</a>
+</span><a class="btn-border-small" href="/posts/基于Xcode8插件开发～一键检测处理头文件引用.html">继续阅读</a></div>
+                           
+            </div>
+        
+        
+        
+     
+   
+   
+  
+</section>
+
+  
+
+            <footer class="footer">
+    <span class="footer__copyright">
+        本站点采用 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    </span>
+    <span class="footer__copyright">
+        基于 <a href="http://hexo.io">Hexo</a> 搭建，感谢 <a href="https://pages.github.com/">GitHub Pages</a> 提供免费的托管服务
+    </span>
+    <span class="footer__copyright">
+        &copy; 2020 - 本站使用 <a href="https://github.com/monniya/hexo-theme-new-vno ">new-vno</a> 主题,
+        由<a href="https://monniya.com ">@Monniya</a> 修改自 <a href="https://github.com/lenbo-ma/hexo-theme-vno" target="_blank">Vno</a>, 原创出自<a href="http://github.com/onevcat/vno" target="_blank">onevcat</a>
+    </span>
+    
+</footer>
+
+
+        </div>
+    </div>
+
+     
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-177465887-1', 'auto');
+	ga('send', 'pageview');
+</script>
+
+    
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?767de431cc6ed08b9e5abf38b370523b";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+
+
+    
+    
+</body>
+</html>
